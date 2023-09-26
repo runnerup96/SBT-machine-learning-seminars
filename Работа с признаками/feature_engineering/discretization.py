@@ -5,7 +5,6 @@ import numpy as np
 
 # from warnings import warn
 
-# 2018.11.17 Created by Eamon.Zhang
 # ChiMerge method modeified from https://github.com/tatsumiw/ChiMerge/blob/master/ChiMerge.py
 # TODO: add more constraits to the discretized result.
 class ChiMerge():
