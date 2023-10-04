@@ -122,16 +122,17 @@ class CustomDecisionTreeRegressor:
             Пороговое значение для выполнения разделения
         """
 
-        best_gain = 0
+        best_gain = 0.0
         best_feature_index = None
         best_threshold = None
 
         I, N = self.criterion(y_subset), len(y_subset)
         for feature_index, x in enumerate(X_subset.T):
-            x = np.sort(x)
-            for threshold in x[self.min_samples_leaf:N-self.min_samples_split+1]:
+            x = np.unique(x)
+            for threshold in x:
                 y_left, y_right = self.make_split_only_y(feature_index, threshold, X_subset, y_subset)
-                I, N = self.criterion(y_subset), len(y_subset)
+                if len(y_left) < self.min_samples_leaf or len(y_right) < self.min_samples_leaf:
+                    continue
                 I_L, N_L = self.criterion(y_left), len(y_left)
                 I_R, N_R = self.criterion(y_right), len(y_right)
                 gain = I - N_L/N * I_L - N_R/N * I_R
