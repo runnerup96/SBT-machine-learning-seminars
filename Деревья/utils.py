@@ -32,3 +32,11 @@ class Node:
         self.feature_index = feature_index
         self.value = threshold
         self.proba = proba
+        
+        
+def sigmoida(x):
+    return 1. / (1 + np.exp(- x))
+
+def softmax(x):
+    e = np.exp(x) 
+    return e / e.sum(axis=0)
