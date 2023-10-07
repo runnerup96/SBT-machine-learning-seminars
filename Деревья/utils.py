@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.preprocessing import LabelEncoder
 
 
 def sampling_proba(y):
@@ -15,6 +16,35 @@ def sampling_proba(y):
     n = np.sum(n_i)
     p_i = n_i / n
     return p_i
+
+
+def feature_encoding (df, cat_cols):
+    """
+    Перекодирует категориальные фичи в числовой формат, нумеруя категории
+
+    Параметры
+    ----------
+    
+    df : pd.DataFrame
+        Выборка
+    cat_cols : list
+        Список названий категориальных фичей
+        
+    Возвращает
+    ----------
+    
+    df : pd.DataFrame
+        Выборка с перекодированными фичами cat_cols
+    label_encoder : dict
+        Словарь кодировщиков категорий в числа
+    """
+    
+    label_encoders = {}
+    for column in cat_cols:
+        le=LabelEncoder()
+        df[column]=le.fit_transform(df[column])
+        label_encoders[column]=le
+    return df, label_encoders
 
 
 def one_hot_encode(n_classes, y):
