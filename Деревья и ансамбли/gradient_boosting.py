@@ -40,7 +40,7 @@ class SimpleGB(BaseEstimator):
         """
         curr_pred = np.ones_like(y_data) * 0.5
         for iter_num in range(self.n_estimators):
-            # Считаем антиградиент функции потерь по предсказниям в точке curr_pred
+            # Считаем антиградиент логистической функции потерь по предсказниям в точке curr_pred
             antigrad = y_data - sigmoida(curr_pred)
             # Обучаем DecisionTreeRegressor предсказывать антиградиент
             algo = DecisionTreeRegressor(max_depth=self.max_depth, criterion="friedman_mse")

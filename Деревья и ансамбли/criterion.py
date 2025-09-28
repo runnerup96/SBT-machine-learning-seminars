@@ -21,7 +21,7 @@ def entropy(y):
 
     eps = 1e-4
     p_i = sampling_proba(y)
-    return -np.sum(p_i * np.log(p_i + eps))
+    return -np.sum(p_i * np.log2(p_i + eps))
 
 
 
