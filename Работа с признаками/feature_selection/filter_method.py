@@ -29,8 +29,8 @@ def constant_feature_detect(data, threshold=0.98):
     # Итерация по всем признакам в данных
     for feature in data_copy.columns:
         # Вычисление доминирующего значения и его частоты
-        predominant = (data_copy[feature].value_counts() / np.float(
-                      len(data_copy))).sort_values(ascending=False).values[0]
+        predominant = (data_copy[feature].value_counts() /
+                      len(data_copy)).sort_values(ascending=False).values[0]
 
         # Если доминирующее значение больше или равно заданному порогу, добавляем признак в список почти постоянных
         if predominant >= threshold:
